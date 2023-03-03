@@ -21,7 +21,7 @@ if ($_SESSION['user']['level'] !== 'admin') {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Edit Petugas | Pembayaran SPP</title>
+    <title>Tambah Kelas | Pembayaran SPP</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -56,7 +56,7 @@ if ($_SESSION['user']['level'] !== 'admin') {
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1 class="m-0">Tambah Petugas</h1>
+                                <h1 class="m-0">Tambah Kelas</h1>
                             </div>
                         </div>
                     </div>
@@ -74,7 +74,7 @@ if ($_SESSION['user']['level'] !== 'admin') {
 
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Tambah Petugas</h3>
+                                    <h3 class="card-title">Tambah Kelas</h3>
                                 </div>
                                 <div class="card-body">
 
