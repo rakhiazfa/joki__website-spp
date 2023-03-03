@@ -48,7 +48,7 @@ if (mysqli_affected_rows($koneksi) > 0) {
 
     echo "
         <script>
-            alert('Gagal memperbarui data petugas.');
+            alert('Gagal memperbarui data petugas !!');
             window.location.href = '" . BASE_URL . "/admin/petugas/edit.php?id=$id';
         </script>
     ";
