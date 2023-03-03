@@ -113,7 +113,7 @@ while ($row = $query->fetch_assoc()) {
                                                                 Edit
                                                             </a>
 
-                                                            <a class="btn btn-danger" href="#">
+                                                            <a class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data ini?')" href="<?php echo BASE_URL . '/admin/petugas/proses_hapus.php?id=' . $item['id_petugas'] ?>">
                                                                 Hapus
                                                             </a>
                                                         </div>
