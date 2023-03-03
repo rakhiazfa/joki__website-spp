@@ -74,7 +74,7 @@ if ($_SESSION['user']['level'] !== 'admin') {
 
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Edit Petugas</h3>
+                                    <h3 class="card-title">Tambah Petugas</h3>
                                 </div>
                                 <div class="card-body">
 
