@@ -56,7 +56,7 @@ if ($_SESSION['user']['level'] !== 'admin') {
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1 class="m-0">Daftar Petugas</h1>
+                                <h1 class="m-0">Tambah Petugas</h1>
                             </div>
                         </div>
                     </div>
