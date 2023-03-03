@@ -46,7 +46,7 @@
                              </a>
                          </li>
                          <li class="nav-item">
-                             <a href="#" class="nav-link">
+                             <a href="<?php echo BASE_URL . '/admin/siswa' ?>" class="nav-link">
                                  <i class="far fa-circle nav-icon"></i>
                                  <p>Siswa</p>
                              </a>

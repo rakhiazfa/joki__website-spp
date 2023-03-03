@@ -13,13 +13,13 @@ if ($_SESSION['user']['level'] !== 'admin') {
     die();
 }
 
-$siswa = [];
+$kelas = [];
 
-$query = mysqli_query($koneksi, "SELECT * FROM siswa LEFT JOIN kelas ON siswa.id_kelas = kelas.id_kelas ORDER BY nisn DESC");
+$query = mysqli_query($koneksi, "SELECT * FROM kelas ORDER BY id_kelas DESC");
 
 while ($row = $query->fetch_assoc()) {
 
-    array_push($siswa, $row);
+    array_push($kelas, $row);
 }
 
 ?>
@@ -30,7 +30,7 @@ while ($row = $query->fetch_assoc()) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Daftar Siswa | Pembayaran SPP</title>
+    <title>Tambah Siswa | Pembayaran SPP</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -65,7 +65,7 @@ while ($row = $query->fetch_assoc()) {
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1 class="m-0">Daftar Siswa</h1>
+                                <h1 class="m-0">Tambah Siswa</h1>
                             </div>
                         </div>
                     </div>
@@ -83,49 +83,51 @@ while ($row = $query->fetch_assoc()) {
 
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Daftar Siswa</h3>
-                                    <div class="card-tools">
-                                        <a href="<?php echo BASE_URL . '/admin/siswa/tambah.php' ?>" class="btn btn-primary">
-                                            Tambah Siswa
-                                        </a>
-                                    </div>
+                                    <h3 class="card-title">Tambah Siswa</h3>
                                 </div>
                                 <div class="card-body">
-                                    <table class="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th style="width: 10px">No</th>
-                                                <th>NISN</th>
-                                                <th>Nama Siswa</th>
-                                                <th>Kelas</th>
-                                                <th style="width: 40px">#</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php $nomor = 1 ?>
-                                            <?php foreach ($siswa as $item) { ?>
-                                                <tr>
-                                                    <td><?php echo $nomor++ ?></td>
-                                                    <td><?php echo $item['nisn'] ?? '' ?></td>
-                                                    <td><?php echo $item['nama'] ?? '' ?></td>
-                                                    <td>
-                                                        <?php echo ($item['nama_kelas'] ?? '') . ' ' . ($item['kompetensi_keahlian'] ?? '') ?>
-                                                    </td>
-                                                    <td>
-                                                        <div class="d-flex align-items-center" style="gap: 1rem;">
-                                                            <a class="btn btn-primary" href="<?php echo BASE_URL . '/admin/siswa/edit.php?nisn=' . $item['nisn'] ?>">
-                                                                Edit
-                                                            </a>
 
-                                                            <a class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data ini?')" href="<?php echo BASE_URL . '/admin/siswa/proses_hapus.php?nisn=' . $item['nisn'] ?>">
-                                                                Hapus
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            <?php } ?>
-                                        </tbody>
-                                    </table>
+                                    <form action="<?php echo BASE_URL . '/admin/siswa/proses_tambah.php' ?>" method="post">
+
+                                        <div class="row">
+
+                                            <div class="input-group mb-3 col-md-6">
+                                                <input type="text" class="form-control" name="nisn" placeholder="NISN">
+                                            </div>
+
+                                            <div class="input-group mb-3 col-md-6">
+                                                <input type="text" class="form-control" name="nis" placeholder="NIS">
+                                            </div>
+
+                                            <div class="input-group mb-3 col-md-6">
+                                                <input type="text" class="form-control" name="nama" placeholder="Nama Siswa">
+                                            </div>
+
+                                            <div class="input-group mb-3 col-md-6">
+                                                <select name="id_kelas" class="form-control">
+                                                    <?php foreach ($kelas as $item) { ?>
+                                                        <option value="<?php echo $item['id_kelas'] ?>">
+                                                            <?php echo ($item['nama_kelas'] ?? '') . ' ' . ($item['kompetensi_keahlian'] ?? '') ?>
+                                                        </option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+
+                                            <div class="input-group mb-3 col-md-12">
+                                                <input type="number" class="form-control" name="no_telp" placeholder="Nomor Telepon Siswa">
+                                            </div>
+
+                                            <div class="input-group mb-3 col-md-12">
+                                                <textarea name="alamat" class="form-control" rows="3" placeholder="Alamat Siswa"></textarea>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row d-flex justify-content-end">
+                                            <button type="submit" class="btn btn-primary btn-block">Tambah</button>
+                                        </div>
+                                    </form>
+
                                 </div>
                             </div>
 
