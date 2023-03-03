@@ -60,7 +60,7 @@ if (mysqli_affected_rows($koneksi) > 0) {
 
     echo "
         <script>
-            alert('Gagal memperbarui data petugas !!');
+            alert('Gagal menambahkan data petugas !!');
             window.location.href = '" . BASE_URL . "/admin/petugas/tambah.php';
         </script>
     ";
