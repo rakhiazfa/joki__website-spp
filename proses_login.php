@@ -23,6 +23,7 @@ if ($petugas) {
 
         echo "
             <script>
+                alert('Username atau password salah.');
                 window.location.href = '" . BASE_URL . "/login.php';
             </script>
         ";
@@ -31,6 +32,7 @@ if ($petugas) {
 
     echo "
         <script>
+            alert('Username atau password salah.');
             window.location.href = '" . BASE_URL . "/login.php';
         </script>
     ";

@@ -1,11 +1,25 @@
 <?php
 
-require_once __DIR__ . '/config/konfigurasi.php';
-require_once __DIR__ . '/database/koneksi.php';
+require_once __DIR__ . '/../../config/konfigurasi.php';
+require_once __DIR__ . '/../../database/koneksi.php';
 
 if (!isset($_SESSION['user'])) {
     header('Location:' . BASE_URL . '/login.php');
     die();
+}
+
+if ($_SESSION['user']['level'] !== 'admin') {
+    header('Location:' . BASE_URL . '/petugas');
+    die();
+}
+
+$petugas = [];
+
+$query = mysqli_query($koneksi, "SELECT * FROM petugas WHERE level = 'petugas' ORDER BY id_petugas DESC");
+
+while ($row = $query->fetch_assoc()) {
+
+    array_push($petugas, $row);
 }
 
 ?>
@@ -34,13 +48,13 @@ if (!isset($_SESSION['user'])) {
     <div class="wrapper">
 
         <!-- Preloader -->
-        <div class="preloader flex-column justify-content-center align-items-center">
+        <!-- <div class="preloader flex-column justify-content-center align-items-center">
             <img class="animation__shake" src="<?php echo BASE_URL . '/assets/dist/img/logo.png' ?>" alt="LOGO" height="60" width="60">
-        </div>
+        </div> -->
 
-        <?php include __DIR__ . '/templates/topbar.php' ?>
+        <?php include __DIR__ . '/../../templates/topbar.php' ?>
 
-        <?php include __DIR__ . '/templates/sidebar.php' ?>
+        <?php include __DIR__ . '/../../templates/sidebar.php' ?>
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -51,7 +65,7 @@ if (!isset($_SESSION['user'])) {
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1 class="m-0">Dashboard</h1>
+                                <h1 class="m-0">Daftar Petugas</h1>
                             </div>
                         </div>
                     </div>
@@ -63,7 +77,57 @@ if (!isset($_SESSION['user'])) {
 
                 <div class="container-fluid">
 
+                    <div class="row">
 
+                        <div class="col-12">
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Daftar Petugas</h3>
+                                    <div class="card-tools">
+                                        <a href="<?php echo BASE_URL . '/admin/petugas/tambah.php' ?>" class="btn btn-primary">
+                                            Tambah Petugas
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 10px">No</th>
+                                                <th>Nama Petugas</th>
+                                                <th>Username</th>
+                                                <th style="width: 40px">#</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $nomor = 1 ?>
+                                            <?php foreach ($petugas as $item) { ?>
+                                                <tr>
+                                                    <td><?php echo $nomor++ ?></td>
+                                                    <td><?php echo $item['nama_petugas'] ?></td>
+                                                    <td><?php echo $item['username'] ?></td>
+                                                    <td>
+                                                        <div class="d-flex align-items-center" style="gap: 1rem;">
+                                                            <a class="btn btn-primary" href="<?php echo BASE_URL . '/admin/petugas/edit.php?id=' . $item['id_petugas'] ?>">
+                                                                Edit
+                                                            </a>
+
+                                                            <a class="btn btn-danger" href="#">
+                                                                Hapus
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
@@ -86,7 +150,7 @@ if (!isset($_SESSION['user'])) {
     <!-- ./wrapper -->
 
     <!-- jQuery -->
-    <script src="assets/plugins/jquery/jquery.min.js"></script>
+    <script src="<?php echo BASE_URL . '/assets/plugins/jquery/jquery.min.js' ?>"></script>
     <!-- Bootstrap 4 -->
     <script src="<?php echo BASE_URL . '/assets/plugins/bootstrap/js/bootstrap.bundle.min.js' ?>"></script>
     <!-- Moment JS -->

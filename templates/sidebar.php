@@ -11,7 +11,7 @@
          <!-- Sidebar user panel (optional) -->
          <div class="user-panel mt-3 pb-3 mb-3 d-flex">
              <div class="info">
-                 <a href="#" class="d-block"><?php echo $_SESSION['user']['nama'] ?? 'Ragil Anugraha' ?></a>
+                 <a href="#" class="d-block"><?php echo $_SESSION['user']['nama_petugas'] ?? 'Ragil Anugraha' ?></a>
              </div>
          </div>
 
@@ -40,7 +40,7 @@
                      </a>
                      <ul class="nav nav-treeview">
                          <li class="nav-item">
-                             <a href="#" class="nav-link">
+                             <a href="<?php echo BASE_URL . '/admin/petugas' ?>" class="nav-link">
                                  <i class="far fa-circle nav-icon"></i>
                                  <p>Petugas</p>
                              </a>

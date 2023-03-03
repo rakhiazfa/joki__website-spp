@@ -21,7 +21,7 @@ if ($_SESSION['user']['level'] !== 'admin') {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Daftar Petugas | Pembayaran SPP</title>
+    <title>Edit Petugas | Pembayaran SPP</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -68,7 +68,50 @@ if ($_SESSION['user']['level'] !== 'admin') {
 
                 <div class="container-fluid">
 
+                    <div class="row">
 
+                        <div class="col-12">
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Edit Petugas</h3>
+                                </div>
+                                <div class="card-body">
+
+                                    <form action="<?php echo BASE_URL . '/admin/petugas/proses_tambah.php' ?>" method="post">
+
+                                        <div class="row">
+
+                                            <div class="input-group mb-3 col-md-6">
+                                                <input type="text" class="form-control" name="nama_petugas" placeholder="Nama Petugas">
+                                            </div>
+
+                                            <div class="input-group mb-3 col-md-6">
+                                                <input type="text" class="form-control" name="username" placeholder="Username">
+                                            </div>
+
+                                            <div class="input-group mb-3 col-md-12">
+                                                <input type="text" class="form-control" name="password" placeholder="Password">
+                                                <div class="input-group-append">
+                                                    <div class="input-group-text">
+                                                        <span class="fas fa-lock"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row d-flex justify-content-end">
+                                            <button type="submit" class="btn btn-primary btn-block">Tambah</button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
 
                 </div>
 

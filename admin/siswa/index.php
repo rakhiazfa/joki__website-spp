@@ -1,10 +1,15 @@
 <?php
 
-require_once __DIR__ . '/config/konfigurasi.php';
-require_once __DIR__ . '/database/koneksi.php';
+require_once __DIR__ . '/../../config/konfigurasi.php';
+require_once __DIR__ . '/../../database/koneksi.php';
 
 if (!isset($_SESSION['user'])) {
     header('Location:' . BASE_URL . '/login.php');
+    die();
+}
+
+if ($_SESSION['user']['level'] !== 'admin') {
+    header('Location:' . BASE_URL . '/petugas');
     die();
 }
 
@@ -16,7 +21,7 @@ if (!isset($_SESSION['user'])) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dashboard | Pembayaran SPP</title>
+    <title>Daftar Petugas | Pembayaran SPP</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -34,13 +39,13 @@ if (!isset($_SESSION['user'])) {
     <div class="wrapper">
 
         <!-- Preloader -->
-        <div class="preloader flex-column justify-content-center align-items-center">
+        <!-- <div class="preloader flex-column justify-content-center align-items-center">
             <img class="animation__shake" src="<?php echo BASE_URL . '/assets/dist/img/logo.png' ?>" alt="LOGO" height="60" width="60">
-        </div>
+        </div> -->
 
-        <?php include __DIR__ . '/templates/topbar.php' ?>
+        <?php include __DIR__ . '/../../templates/topbar.php' ?>
 
-        <?php include __DIR__ . '/templates/sidebar.php' ?>
+        <?php include __DIR__ . '/../../templates/sidebar.php' ?>
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -51,7 +56,7 @@ if (!isset($_SESSION['user'])) {
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1 class="m-0">Dashboard</h1>
+                                <h1 class="m-0">Daftar Petugas</h1>
                             </div>
                         </div>
                     </div>
@@ -86,7 +91,7 @@ if (!isset($_SESSION['user'])) {
     <!-- ./wrapper -->
 
     <!-- jQuery -->
-    <script src="assets/plugins/jquery/jquery.min.js"></script>
+    <script src="<?php echo BASE_URL . '/assets/plugins/jquery/jquery.min.js' ?>"></script>
     <!-- Bootstrap 4 -->
     <script src="<?php echo BASE_URL . '/assets/plugins/bootstrap/js/bootstrap.bundle.min.js' ?>"></script>
     <!-- Moment JS -->
