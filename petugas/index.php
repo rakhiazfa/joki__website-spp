@@ -1,16 +1,23 @@
 <?php
 
-require_once __DIR__ . '/config/konfigurasi.php';
-require_once __DIR__ . '/database/koneksi.php';
+require_once __DIR__ . '/../config/konfigurasi.php';
+require_once __DIR__ . '/../database/koneksi.php';
 
 if (!isset($_SESSION['user'])) {
     header('Location:' . BASE_URL . '/login.php');
     die();
 }
 
-if ($_SESSION['user']['level'] !== 'admin') {
-    header('Location:' . BASE_URL . '/petugas');
-    die();
+$transaksi = [];
+
+$query = mysqli_query($koneksi, "SELECT * FROM pembayaran 
+LEFT JOIN siswa ON pembayaran.nisn = siswa.nisn 
+LEFT JOIN spp ON pembayaran.id_spp = spp.id_spp 
+ORDER BY id_pembayaran DESC");
+
+while ($row = $query->fetch_assoc()) {
+
+    array_push($transaksi, $row);
 }
 
 $query = mysqli_query($koneksi, "SELECT SUM(jumlah_bayar) AS total_uang_spp FROM pembayaran");
@@ -51,13 +58,13 @@ $total_transaksi = $query->fetch_assoc()['count'] ?? 0;
     <div class="wrapper">
 
         <!-- Preloader -->
-        <div class="preloader flex-column justify-content-center align-items-center">
+        <!-- <div class="preloader flex-column justify-content-center align-items-center">
             <img class="animation__shake" src="<?php echo BASE_URL . '/assets/dist/img/logo.png' ?>" alt="LOGO" height="60" width="60">
-        </div>
+        </div> -->
 
-        <?php include __DIR__ . '/templates/topbar.php' ?>
+        <?php include __DIR__ . '/../templates/topbar.php' ?>
 
-        <?php include __DIR__ . '/templates/sidebar.php' ?>
+        <?php include __DIR__ . '/../templates/sidebar.php' ?>
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -91,20 +98,6 @@ $total_transaksi = $query->fetch_assoc()['count'] ?? 0;
                                 </div>
                                 <div class="icon">
                                     <i class="fas fa-dollar-sign"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- ./col -->
-                        <div class="col-lg-3 col-6">
-                            <!-- small box -->
-                            <div class="small-box bg-success">
-                                <div class="inner">
-                                    <h3><?php echo $total_petugas ?></h3>
-
-                                    <p>Jumlah Petugas</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fas fa-user-alt"></i>
                                 </div>
                             </div>
                         </div>
@@ -160,7 +153,7 @@ $total_transaksi = $query->fetch_assoc()['count'] ?? 0;
     <!-- ./wrapper -->
 
     <!-- jQuery -->
-    <script src="assets/plugins/jquery/jquery.min.js"></script>
+    <script src="<?php echo BASE_URL . '/assets/plugins/jquery/jquery.min.js' ?>"></script>
     <!-- Bootstrap 4 -->
     <script src="<?php echo BASE_URL . '/assets/plugins/bootstrap/js/bootstrap.bundle.min.js' ?>"></script>
     <!-- Moment JS -->
