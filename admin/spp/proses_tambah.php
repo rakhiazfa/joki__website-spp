@@ -27,6 +27,20 @@ if ($tahun == '' || $nominal == '') {
     die();
 }
 
+$query = mysqli_query($koneksi, "SELECT * FROM spp WHERE tahun = '$tahun' LIMIT 1");
+$spp = $query->fetch_assoc();
+
+if ($spp) {
+
+    echo "
+        <script>
+            alert('Data SPP telah ditambahkan !!');
+            window.location.href = '" . BASE_URL . "/admin/spp';
+        </script>
+    ";
+    die();
+}
+
 $query = mysqli_query($koneksi, "INSERT INTO spp (tahun, nominal) VALUES (
     '$tahun', '$nominal'
 )");
