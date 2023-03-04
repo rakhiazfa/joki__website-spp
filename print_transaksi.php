@@ -121,13 +121,13 @@ $transaksi = $query->fetch_assoc();
 
     </div>
 
-    <script>
+    <!-- <script>
         window.print();
 
         window.onafterprint = function() {
             window.location.href = '<?php echo BASE_URL . '/riwayat_transaksi' ?>';
         };
-    </script>
+    </script> -->
 
 </body>
 
