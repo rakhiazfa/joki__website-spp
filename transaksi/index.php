@@ -1,16 +1,20 @@
 <?php
 
-require_once __DIR__ . '/../../config/konfigurasi.php';
-require_once __DIR__ . '/../../database/koneksi.php';
+require_once __DIR__ . '/../config/konfigurasi.php';
+require_once __DIR__ . '/../database/koneksi.php';
 
 if (!isset($_SESSION['user'])) {
     header('Location:' . BASE_URL . '/login.php');
     die();
 }
 
-if ($_SESSION['user']['level'] !== 'admin') {
-    header('Location:' . BASE_URL . '/petugas');
-    die();
+$siswa = [];
+
+$query = mysqli_query($koneksi, "SELECT * FROM siswa ORDER BY nisn DESC");
+
+while ($row = $query->fetch_assoc()) {
+
+    array_push($siswa, $row);
 }
 
 ?>
@@ -21,7 +25,7 @@ if ($_SESSION['user']['level'] !== 'admin') {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Daftar Petugas | Pembayaran SPP</title>
+    <title>Entri Transaksi | Pembayaran SPP</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -43,9 +47,9 @@ if ($_SESSION['user']['level'] !== 'admin') {
             <img class="animation__shake" src="<?php echo BASE_URL . '/assets/dist/img/logo.png' ?>" alt="LOGO" height="60" width="60">
         </div> -->
 
-        <?php include __DIR__ . '/../../templates/topbar.php' ?>
+        <?php include __DIR__ . '/../templates/topbar.php' ?>
 
-        <?php include __DIR__ . '/../../templates/sidebar.php' ?>
+        <?php include __DIR__ . '/../templates/sidebar.php' ?>
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -56,7 +60,7 @@ if ($_SESSION['user']['level'] !== 'admin') {
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1 class="m-0">Daftar Petugas</h1>
+                                <h1 class="m-0">Entri Transaksi</h1>
                             </div>
                         </div>
                     </div>
@@ -68,7 +72,52 @@ if ($_SESSION['user']['level'] !== 'admin') {
 
                 <div class="container-fluid">
 
+                    <div class="row">
 
+                        <div class="col-12">
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Entri Transaksi Pembayaran</h3>
+                                </div>
+                                <div class="card-body">
+
+                                    <form action="<?php echo BASE_URL . '/transaksi/proses_transaksi.php' ?>" method="post">
+
+                                        <div class="row">
+
+                                            <div class="input-group mb-3 col-md-12">
+                                                <select name="nisn" class="form-control">
+                                                    <option selected disabled>Pilih Siswa</option>
+                                                    <?php foreach ($siswa as $item) { ?>
+                                                        <option value="<?php echo $item['nisn'] ?>">
+                                                            <?php echo $item['nisn'] ?> - <?php echo $item['nama'] ?>
+                                                        </option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+
+                                            <div class="input-group mb-3 col-md-6">
+                                                <input type="date" class="form-control" name="tgl_bayar">
+                                            </div>
+
+                                            <div class="input-group mb-3 col-md-6">
+                                                <input type="text" class="form-control" name="jumlah_bayar" placeholder="Nominal">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row d-flex justify-content-end">
+                                            <button type="submit" class="btn btn-primary btn-block">Bayar</button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
 
                 </div>
 

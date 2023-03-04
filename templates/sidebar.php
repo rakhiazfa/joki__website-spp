@@ -28,54 +28,58 @@
                      </a>
                  </li>
 
-                 <li class="nav-header">MENU / ITEM</li>
+                 <?php if (($_SESSION['user']['level'] ?? null) == 'admin') { ?>
 
-                 <li class="nav-item">
-                     <a href="#" class="nav-link">
-                         <i class="nav-icon fas fa-user-alt"></i>
-                         <p>
-                             Pengguna
-                             <i class="right fas fa-angle-left"></i>
-                         </p>
-                     </a>
-                     <ul class="nav nav-treeview">
-                         <li class="nav-item">
-                             <a href="<?php echo BASE_URL . '/admin/petugas' ?>" class="nav-link">
-                                 <i class="far fa-circle nav-icon"></i>
-                                 <p>Petugas</p>
-                             </a>
-                         </li>
-                         <li class="nav-item">
-                             <a href="<?php echo BASE_URL . '/admin/siswa' ?>" class="nav-link">
-                                 <i class="far fa-circle nav-icon"></i>
-                                 <p>Siswa</p>
-                             </a>
-                         </li>
-                     </ul>
-                 </li>
+                     <li class="nav-header">MENU / ITEM</li>
 
-                 <li class="nav-item">
-                     <a href="<?php echo BASE_URL . '/admin/kelas' ?>" class="nav-link">
-                         <i class="nav-icon fas fa-table"></i>
-                         <p>
-                             Data Kelas
-                         </p>
-                     </a>
-                 </li>
+                     <li class="nav-item">
+                         <a href="#" class="nav-link">
+                             <i class="nav-icon fas fa-user-alt"></i>
+                             <p>
+                                 Pengguna
+                                 <i class="right fas fa-angle-left"></i>
+                             </p>
+                         </a>
+                         <ul class="nav nav-treeview">
+                             <li class="nav-item">
+                                 <a href="<?php echo BASE_URL . '/admin/petugas' ?>" class="nav-link">
+                                     <i class="far fa-circle nav-icon"></i>
+                                     <p>Petugas</p>
+                                 </a>
+                             </li>
+                             <li class="nav-item">
+                                 <a href="<?php echo BASE_URL . '/admin/siswa' ?>" class="nav-link">
+                                     <i class="far fa-circle nav-icon"></i>
+                                     <p>Siswa</p>
+                                 </a>
+                             </li>
+                         </ul>
+                     </li>
 
-                 <li class="nav-item">
-                     <a href="<?php echo BASE_URL . '/admin/spp' ?>" class="nav-link">
-                         <i class="nav-icon fas fa-file-alt"></i>
-                         <p>
-                             Data SPP
-                         </p>
-                     </a>
-                 </li>
+                     <li class="nav-item">
+                         <a href="<?php echo BASE_URL . '/admin/kelas' ?>" class="nav-link">
+                             <i class="nav-icon fas fa-table"></i>
+                             <p>
+                                 Data Kelas
+                             </p>
+                         </a>
+                     </li>
+
+                     <li class="nav-item">
+                         <a href="<?php echo BASE_URL . '/admin/spp' ?>" class="nav-link">
+                             <i class="nav-icon fas fa-file-alt"></i>
+                             <p>
+                                 Data SPP
+                             </p>
+                         </a>
+                     </li>
+
+                 <?php } ?>
 
                  <li class="nav-header">TRANSAKSI</li>
 
                  <li class="nav-item">
-                     <a href="#" class="nav-link">
+                     <a href="<?php echo BASE_URL . '/transaksi' ?>" class="nav-link">
                          <i class='nav-icon fas fa-file-signature'></i>
                          <p>
                              Entri Transaksi
@@ -84,19 +88,10 @@
                  </li>
 
                  <li class="nav-item">
-                     <a href="#" class="nav-link">
+                     <a href="<?php echo BASE_URL . '/riwayat_transaksi' ?>" class="nav-link">
                          <i class='nav-icon fas fa-file-invoice'></i>
                          <p>
                              Riwayat Transaksi
-                         </p>
-                     </a>
-                 </li>
-
-                 <li class="nav-item">
-                     <a href="#" class="nav-link">
-                         <i class='nav-icon fas fa-file-invoice-dollar'></i>
-                         <p>
-                             Generate Peybayaran
                          </p>
                      </a>
                  </li>
