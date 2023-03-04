@@ -40,6 +40,7 @@
                  <?php } ?>
 
                  <?php if (isset($_SESSION['user'])) { ?>
+
                      <?php if (($_SESSION['user']['level'] ?? null) == 'admin') { ?>
 
                          <li class="nav-header">MENU / ITEM</li>
@@ -107,6 +108,19 @@
                              </p>
                          </a>
                      </li>
+                 <?php } ?>
+
+                 <?php if (($_SESSION['user']['level'] ?? null) == 'admin') { ?>
+
+                     <li class="nav-item">
+                         <a href="<?php echo BASE_URL . '/admin/generate_laporan' ?>" class="nav-link">
+                             <i class="nav-icon fas fa-file-alt"></i>
+                             <p>
+                                 Generate Laporan
+                             </p>
+                         </a>
+                     </li>
+
                  <?php } ?>
 
                  <li class="nav-item">
