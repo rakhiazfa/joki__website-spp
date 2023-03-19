@@ -124,7 +124,7 @@ while ($row = $query->fetch_assoc()) {
                                                     <td><?php echo $item['no_telp'] ?? '' ?></td>
                                                     <td>
                                                         <div class="d-flex align-items-center" style="gap: 1rem;">
-                                                        <a class="btn btn-primary p-1" href="<?php echo BASE_URL . '/admin/siswa/detail.php?nisn=' . $item['nisn'] ?>">
+                                                            <a class="btn btn-primary p-1" href="<?php echo BASE_URL . '/admin/siswa/detail.php?nisn=' . $item['nisn'] ?>">
                                                                 Detail
                                                             </a>
 
@@ -188,13 +188,15 @@ while ($row = $query->fetch_assoc()) {
     <script src="<?php echo BASE_URL . '/assets/plugins/datatables-buttons/js/buttons.colVis.min.js' ?>"></script>
 
     <script>
-        $(function () {
-    $("#siswa").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": []
-    }).buttons().container().appendTo('#siswa_wrapper .col-md-6:eq(0)');
-   
-  });
+        $(function() {
+            $("#siswa").DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": []
+            }).buttons().container().appendTo('#siswa_wrapper .col-md-6:eq(0)');
+
+        });
     </script>
 </body>
 

@@ -90,13 +90,13 @@ $siswa = $query->fetch_assoc();
                                     <h3 class="card-title">Detail siswa</h3>
                                 </div>
                                 <div class="card-body">
-                                        
-                                <p>NISN : <b><?= $siswa["nisn"] ?></b> </p>
-                                <p>NIS : <b><?= $siswa["nis"] ?></b> </p>
-                                <p>Nama : <b><?= $siswa["nama"] ?></b> </p>
-                                <p>Kelas : <b><?php echo ($siswa['nama_kelas'] ?? '') . ' ' . ($siswa['kompetensi_keahlian'] ?? '') ?></b></p>
-                                <p>Alamat : <b><?= $siswa["alamat"] ?></b> </p>
-                                <p>No Telepon : <b><?= $siswa["no_telp"] ?></b> </p>
+
+                                    <p>NISN : <b><?= $siswa["nisn"] ?></b> </p>
+                                    <p>NIS : <b><?= $siswa["nis"] ?></b> </p>
+                                    <p>Nama : <b><?= $siswa["nama"] ?></b> </p>
+                                    <p>Kelas : <b><?php echo ($siswa['nama_kelas'] ?? '') . ' ' . ($siswa['kompetensi_keahlian'] ?? '') ?></b></p>
+                                    <p>Alamat : <b><?= $siswa["alamat"] ?></b> </p>
+                                    <p>No Telepon : <b><?= $siswa["no_telp"] ?></b> </p>
 
                                 </div>
                             </div>

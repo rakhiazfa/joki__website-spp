@@ -100,7 +100,7 @@ $transaksi = $query->fetch_assoc();
                 <th>: <?php echo $transaksi['nama_kelas'] ?? '' ?> <?php echo $transaksi['kompetensi_keahlian'] ?? '' ?></th>
             </tr>
             <tr>
-            <th style="width: 150px;">Id Pembayaran</th>
+                <th style="width: 150px;">Id Pembayaran</th>
                 <th>: <?php echo $transaksi['id_pembayaran'] ?></th>
             </tr>
         </table>
@@ -119,25 +119,27 @@ $transaksi = $query->fetch_assoc();
                 <tr>
                     <td>1</td>
                     <td><?php echo $transaksi['tgl_bayar'] ?></td>
-                    <td><?php echo 'Rp.'. number_format($transaksi['jumlah_bayar']) ?></td>
+                    <td><?php echo 'Rp.' . number_format($transaksi['jumlah_bayar']) ?></td>
                 </tr>
             </thead>
         </table>
         <br>
         <br>
-        <b><th style="width: 150px;">Nama Petugas</th>
-                 <th>: <?php echo $transaksi['nama_petugas'] ?></th> 
-            </tr></b>
+        <b>
+            <th style="width: 150px;">Nama Petugas</th>
+            <th>: <?php echo $transaksi['nama_petugas'] ?></th>
+            </tr>
+        </b>
 
     </div>
 
-    <!--<script>-->
-    <!--    window.print();-->
+    <script>
+        window.print();
 
-    <!--    window.onafterprint = function() {-->
-    <!--        window.location.href = '<?php echo BASE_URL . '/riwayat_transaksi' ?>';-->
-    <!--    };-->
-    <!--</script>-->
+        window.onafterprint = function() {
+            window.location.href = '<?php echo BASE_URL . '/riwayat_transaksi' ?>';
+        };
+    </script>
 
 </body>
 
