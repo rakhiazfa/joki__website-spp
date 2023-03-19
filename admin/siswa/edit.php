@@ -24,6 +24,15 @@ $query = mysqli_query($koneksi, "SELECT * FROM siswa WHERE nisn = '$nisn' LIMIT 
 
 $siswa = $query->fetch_assoc();
 
+$kelas = [];
+
+$query = mysqli_query($koneksi, "SELECT * FROM kelas ORDER BY id_kelas DESC");
+
+while ($row = $query->fetch_assoc()) {
+
+    array_push($kelas, $row);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -33,6 +42,7 @@ $siswa = $query->fetch_assoc();
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Edit siswa | Pembayaran SPP</title>
+    <link rel="shortcut icon" href="assets/dist/img/rrr.png">
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -85,7 +95,8 @@ $siswa = $query->fetch_assoc();
 
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Edit siswa</h3>
+                                    <h3 class="card-title" style="margin-top: 10px;">Edit siswa</h3>
+                                    <h3><a href="<?php echo BASE_URL . '/admin/siswa/index.php?nisn' ?>" class="p-1 bnt btn-primary btn-xs" style="margin-left: 5px;">Kembali</a></h3>
                                 </div>
                                 <div class="card-body">
 
@@ -94,19 +105,19 @@ $siswa = $query->fetch_assoc();
                                         <div class="row">
 
                                             <div class="input-group mb-3 col-md-6">
-                                                <input type="text" class="form-control" name="nisn" placeholder="NISN">
+                                                <input type="text" class="form-control" name="nisn" placeholder="NISN" value="<?php echo $siswa['nisn'] ?>">
                                             </div>
 
                                             <div class="input-group mb-3 col-md-6">
-                                                <input type="text" class="form-control" name="nis" placeholder="NIS">
+                                                <input type="text" class="form-control" name="nis" placeholder="NIS" value="<?php echo $siswa['nis']?>">
                                             </div>
 
                                             <div class="input-group mb-3 col-md-6">
-                                                <input type="text" class="form-control" name="nama" placeholder="Nama Siswa">
+                                                <input type="text" class="form-control" name="nama" placeholder="Nama Siswa" value="<?php echo $siswa['nama'] ?>">
                                             </div>
 
                                             <div class="input-group mb-3 col-md-6">
-                                                <select name="id_kelas" class="form-control">
+                                                <select name="id_kelas" class="form-control" value="<?php echo $siswa['id_kelas']?>">
                                                     <?php foreach ($kelas as $item) { ?>
                                                         <option value="<?php echo $item['id_kelas'] ?>">
                                                             <?php echo ($item['nama_kelas'] ?? '') . ' ' . ($item['kompetensi_keahlian'] ?? '') ?>
@@ -116,11 +127,11 @@ $siswa = $query->fetch_assoc();
                                             </div>
 
                                             <div class="input-group mb-3 col-md-12">
-                                                <input type="number" class="form-control" name="no_telp" placeholder="Nomor Telepon Siswa">
+                                                <input type="number" class="form-control" name="no_telp" placeholder="Nomor Telepon Siswa" value="<?php echo $siswa['no_telp']?>">
                                             </div>
 
                                             <div class="input-group mb-3 col-md-12">
-                                                <textarea name="alamat" class="form-control" rows="3" placeholder="Alamat Siswa"></textarea>
+                                                <textarea name="alamat" class="form-control" rows="3" placeholder="Alamat Siswa" value="<?= $siswa["alamat"] ?>"><?= $siswa["alamat"] ?></textarea>
                                             </div>
 
                                         </div>

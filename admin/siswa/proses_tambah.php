@@ -20,6 +20,7 @@ $id_kelas = htmlspecialchars($_POST['id_kelas']);
 $no_telp = htmlspecialchars($_POST['no_telp']);
 $alamat = htmlspecialchars($_POST['alamat']);
 
+
 if ($nisn == '' || $nis == '' || $nama == '' || $id_kelas == '' || $no_telp == '' || $alamat == '') {
 
     echo "
@@ -59,9 +60,10 @@ if ($siswa) {
     die();
 }
 
-$query = mysqli_query($koneksi, "INSERT INTO siswa (nisn, nis, nama, id_kelas, no_telp, alamat) VALUES (
-    '$nisn', '$nis', '$nama', '$id_kelas', '$no_telp', '$alamat'
+$query = mysqli_query($koneksi, "INSERT INTO siswa (nisn, nis, nama, id_kelas, alamat, no_telp) VALUES (
+    '$nisn', '$nis', '$nama', '$id_kelas', '$alamat', '$no_telp'
 )");
+
 
 if (mysqli_affected_rows($koneksi) > 0) {
 

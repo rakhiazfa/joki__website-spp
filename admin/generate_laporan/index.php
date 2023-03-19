@@ -29,6 +29,7 @@ while ($row = $query->fetch_assoc()) {
 
 <!DOCTYPE html>
 <html lang="en">
+    
 
 <head>
     <meta charset="utf-8">
@@ -117,12 +118,12 @@ while ($row = $query->fetch_assoc()) {
                         <td>
                             <?php echo date('d F Y', strtotime($item['tgl_bayar'])) ?>
                         </td>
-                        <td><?php echo number_format($item['jumlah_bayar'] ?? 0) ?></td>
+                        <td><?php echo 'Rp.'. number_format($item['jumlah_bayar'] ?? 0) ?></td>
                         <td>
                             <?php if (isset($item['sisa_bayar']) && $item['sisa_bayar'] <= 0) { ?>
                                 <div class="badge badge-success">Lunas</div>
                             <?php } else { ?>
-                                <?php echo number_format($item['sisa_bayar'] ?? 0) ?>
+                                <?php echo 'Rp.'. number_format($item['sisa_bayar'] ?? 0) ?>
                             <?php } ?>
                         </td>
                     </tr>

@@ -25,12 +25,25 @@ require_once __DIR__ . '/../config/konfigurasi.php';
 		<!-- /.login-logo -->
 		<div class="card card-outline card-primary">
 			<div class="card-header text-center">
-				<a href="assets/index2.html" class="h1"><b>Website SPP</a>
+				<a href="assets/index2.html" class="h1"><b>APP | SPP</a>
 			</div>
 			<div class="card-body">
 				<form action="<?php echo BASE_URL . '/siswa/proses_login.php' ?>" method="post">
 					<div class="input-group mb-3">
-						<input type="text" class="form-control" name="nisn" placeholder="Masukan NISN anda">
+						<input type="text" class="form-control" name="nisn" placeholder="Masukan NISN anda" required>
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-envelope"></span>
+							</div>
+						</div>
+					</div>
+					<div class="input-group mb-3">
+						<input type="password" class="form-control" name="password" placeholder="Password" required>
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-lock"></span>
+							</div>
+						</div>
 					</div>
 
 					<div class="row">
@@ -45,6 +58,7 @@ require_once __DIR__ . '/../config/konfigurasi.php';
 				</form>
 
 			</div>
+
 			<!-- /.card-body -->
 		</div>
 		<!-- /.card -->

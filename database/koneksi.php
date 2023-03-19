@@ -1,3 +1,3 @@
 <?php
 
-$koneksi = mysqli_connect("localhost", "root", "", "db_spp");
+$koneksi = mysqli_connect("localhost", "root", "", "spp_ragil");

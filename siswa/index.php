@@ -96,7 +96,7 @@ while ($row = $query->fetch_assoc()) {
                                                 <th>Tanggal Bayar</th>
                                                 <th>Jumlah Bayar</th>
                                                 <th>Sisa Yang Harus Dibayar</th>
-                                                <th>#</th>
+
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -119,11 +119,7 @@ while ($row = $query->fetch_assoc()) {
                                                             <?php echo number_format($item['sisa_bayar'] ?? 0) ?>
                                                         <?php } ?>
                                                     </td>
-                                                    <td>
-                                                        <a class="btn btn-primary" href="<?php echo BASE_URL . '/print_transaksi.php?id=' . $item['id_pembayaran'] ?>">
-                                                            Print
-                                                        </a>
-                                                    </td>
+
                                                 </tr>
                                             <?php } ?>
                                         </tbody>

@@ -28,7 +28,7 @@ while ($row = $query->fetch_assoc()) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Riwayat Transaksi | Pembayaran SPP</title>
+    <title>History Pembayaran | Pembayaran SPP</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -63,7 +63,7 @@ while ($row = $query->fetch_assoc()) {
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1 class="m-0">Riwayat Transaksi</h1>
+                                <h1 class="m-0">History Pembayaran</h1>
                             </div>
                         </div>
                     </div>
@@ -81,7 +81,7 @@ while ($row = $query->fetch_assoc()) {
 
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Riwayat Transaksi</h3>
+                                    <h3 class="card-title">History Pembayaran</h3>
                                 </div>
                                 <div class="card-body">
                                     <table class="table table-bordered">
@@ -93,7 +93,7 @@ while ($row = $query->fetch_assoc()) {
                                                 <th>Tanggal Bayar</th>
                                                 <th>Jumlah Bayar</th>
                                                 <th>Sisa Yang Harus Dibayar</th>
-                                                <th>#</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -108,12 +108,12 @@ while ($row = $query->fetch_assoc()) {
                                                     <td>
                                                         <?php echo date('d F Y', strtotime($item['tgl_bayar'])) ?>
                                                     </td>
-                                                    <td><?php echo number_format($item['jumlah_bayar'] ?? 0) ?></td>
+                                                    <td><?php echo 'Rp.'. number_format($item['jumlah_bayar'] ?? 0) ?></td>
                                                     <td>
                                                         <?php if (isset($item['sisa_bayar']) && $item['sisa_bayar'] <= 0) { ?>
-                                                            <div class="badge badge-success">Lunas</div>
+                                                            <div class="badge badge-success">lunas</div>
                                                         <?php } else { ?>
-                                                            <?php echo number_format($item['sisa_bayar'] ?? 0) ?>
+                                                            <?php echo 'Rp.' . number_format($item['sisa_bayar'] ?? 0) ?>
                                                         <?php } ?>
                                                     </td>
                                                     <td>

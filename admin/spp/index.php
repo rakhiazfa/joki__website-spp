@@ -31,6 +31,7 @@ while ($row = $query->fetch_assoc()) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Data SPP | Pembayaran SPP</title>
+    <link rel="shortcut icon" href="assets/dist/img/rrr.png">
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -97,7 +98,7 @@ while ($row = $query->fetch_assoc()) {
                                                 <th style="width: 10px">No</th>
                                                 <th>Tahun</th>
                                                 <th>Nominal</th>
-                                                <th style="width: 40px">#</th>
+                                                <th style="width: 40px">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -106,7 +107,7 @@ while ($row = $query->fetch_assoc()) {
                                                 <tr>
                                                     <td><?php echo $nomor++ ?></td>
                                                     <td><?php echo $item['tahun'] ?></td>
-                                                    <td><?php echo number_format($item['nominal']) ?></td>
+                                                    <td><?php echo 'Rp.'. number_format($item['nominal']) ?></td>
                                                     <td>
                                                         <div class="d-flex align-items-center" style="gap: 1rem;">
                                                             <a class="btn btn-primary" href="<?php echo BASE_URL . '/admin/spp/edit.php?id=' . $item['id_spp'] ?>">

@@ -1,6 +1,6 @@
 <?php
 
-define('BASE_URL', 'http://localhost/website-spp-ragil');
+define('BASE_URL', 'http://localhost/spp-ragil');
 
 define('SALT', 'xHj2UkdGb8Etz');
 

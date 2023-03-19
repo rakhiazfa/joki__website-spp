@@ -10,7 +10,8 @@ require_once __DIR__ . '/config/konfigurasi.php';
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Login | Website SPP</title>
+	<title>Login | APP-SPP</title>
+	<link rel="shortcut icon" href="assets/dist/img/rrr.png">
 
 	<!-- Google Font: Source Sans Pro -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -25,7 +26,7 @@ require_once __DIR__ . '/config/konfigurasi.php';
 		<!-- /.login-logo -->
 		<div class="card card-outline card-primary">
 			<div class="card-header text-center">
-				<a href="assets/index2.html" class="h1"><b>Website SPP</a>
+				<a href="assets/index2.html" class="h1"><b>APP | SPP</a>
 			</div>
 			<div class="card-body">
 				<p class="login-box-msg">Sign in to start your session</p>

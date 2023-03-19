@@ -68,7 +68,7 @@ if (mysqli_affected_rows($koneksi) > 0) {
     echo "
         <script>
             alert('Berhasil menambahkan data transaksi.');
-            window.location.href = '" . BASE_URL . "/transaksi';
+            window.location.href = '" . BASE_URL . "/riwayat_transaksi';
         </script>
     ";
 } else {

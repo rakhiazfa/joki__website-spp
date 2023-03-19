@@ -18,6 +18,7 @@ $id = $_GET['id'];
 $query = mysqli_query($koneksi, "SELECT * FROM pembayaran 
 JOIN siswa ON pembayaran.nisn = siswa.nisn 
 LEFT JOIN kelas ON siswa.id_kelas = kelas.id_kelas 
+LEFT JOIN petugas ON pembayaran.id_petugas = petugas.id_petugas
 WHERE id_pembayaran = '$id' LIMIT 1");
 $transaksi = $query->fetch_assoc();
 
@@ -98,6 +99,10 @@ $transaksi = $query->fetch_assoc();
                 <th style="width: 150px;">Kelas</th>
                 <th>: <?php echo $transaksi['nama_kelas'] ?? '' ?> <?php echo $transaksi['kompetensi_keahlian'] ?? '' ?></th>
             </tr>
+            <tr>
+            <th style="width: 150px;">Id Pembayaran</th>
+                <th>: <?php echo $transaksi['id_pembayaran'] ?></th>
+            </tr>
         </table>
 
         <br>
@@ -114,20 +119,25 @@ $transaksi = $query->fetch_assoc();
                 <tr>
                     <td>1</td>
                     <td><?php echo $transaksi['tgl_bayar'] ?></td>
-                    <td><?php echo number_format($transaksi['jumlah_bayar']) ?></td>
+                    <td><?php echo 'Rp.'. number_format($transaksi['jumlah_bayar']) ?></td>
                 </tr>
             </thead>
         </table>
+        <br>
+        <br>
+        <b><th style="width: 150px;">Nama Petugas</th>
+                 <th>: <?php echo $transaksi['nama_petugas'] ?></th> 
+            </tr></b>
 
     </div>
 
-    <script>
-        window.print();
+    <!--<script>-->
+    <!--    window.print();-->
 
-        window.onafterprint = function() {
-            window.location.href = '<?php echo BASE_URL . '/riwayat_transaksi' ?>';
-        };
-    </script>
+    <!--    window.onafterprint = function() {-->
+    <!--        window.location.href = '<?php echo BASE_URL . '/riwayat_transaksi' ?>';-->
+    <!--    };-->
+    <!--</script>-->
 
 </body>
 

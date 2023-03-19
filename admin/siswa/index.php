@@ -31,6 +31,7 @@ while ($row = $query->fetch_assoc()) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Daftar Siswa | Pembayaran SPP</title>
+    <link rel="shortcut icon" href="assets/dist/img/rrr.png">
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -42,6 +43,10 @@ while ($row = $query->fetch_assoc()) {
     <link rel="stylesheet" href="<?php echo BASE_URL . '/assets/dist/css/adminlte.min.css' ?>">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="<?php echo BASE_URL . '/assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css' ?>">
+
+    <link rel="stylesheet" href="<?php echo BASE_URL . '/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css' ?>">
+    <link rel="stylesheet" href="<?php echo BASE_URL . '/assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css' ?>">
+    <link rel="stylesheet" href="<?php echo BASE_URL . '/assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css' ?>">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -91,14 +96,17 @@ while ($row = $query->fetch_assoc()) {
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <table class="table table-bordered">
+                                    <table class="table table-bordered table-striped dataTable dtr-inline collapsed" id="siswa">
                                         <thead>
                                             <tr>
                                                 <th style="width: 10px">No</th>
                                                 <th>NISN</th>
+                                                <th>NIS</th>
                                                 <th>Nama Siswa</th>
                                                 <th>Kelas</th>
-                                                <th style="width: 40px">#</th>
+                                                <th>Alamat</th>
+                                                <th>No telepon</th>
+                                                <th style="width: 40px">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -107,17 +115,22 @@ while ($row = $query->fetch_assoc()) {
                                                 <tr>
                                                     <td><?php echo $nomor++ ?></td>
                                                     <td><?php echo $item['nisn'] ?? '' ?></td>
+                                                    <td><?php echo $item['nis'] ?? '' ?></td>
                                                     <td><?php echo $item['nama'] ?? '' ?></td>
                                                     <td>
                                                         <?php echo ($item['nama_kelas'] ?? '') . ' ' . ($item['kompetensi_keahlian'] ?? '') ?>
                                                     </td>
+                                                    <td><?php echo $item['alamat'] ?? '' ?></td>
+                                                    <td><?php echo $item['no_telp'] ?? '' ?></td>
                                                     <td>
                                                         <div class="d-flex align-items-center" style="gap: 1rem;">
-                                                            <a class="btn btn-primary" href="<?php echo BASE_URL . '/admin/siswa/edit.php?nisn=' . $item['nisn'] ?>">
-                                                                Edit
+                                                        <a class="btn btn-primary p-1" href="<?php echo BASE_URL . '/admin/siswa/detail.php?nisn=' . $item['nisn'] ?>">
+                                                                Detail
                                                             </a>
 
-                                                            <a class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data ini?')" href="<?php echo BASE_URL . '/admin/siswa/proses_hapus.php?nisn=' . $item['nisn'] ?>">
+                                                            <a class="btn btn-primary p-1" href="<?php echo BASE_URL . '/admin/siswa/edit.php?nisn=' . $item['nisn'] ?>">Edit</a>
+
+                                                            <a class="btn btn-danger p-1" onclick="return confirm('Yakin ingin menghapus data ini?')" href="<?php echo BASE_URL . '/admin/siswa/proses_hapus.php?nisn=' . $item['nisn'] ?>">
                                                                 Hapus
                                                             </a>
                                                         </div>
@@ -163,6 +176,26 @@ while ($row = $query->fetch_assoc()) {
     <script src="<?php echo BASE_URL . '/assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js' ?>"></script>
     <!-- AdminLTE App -->
     <script src="<?php echo BASE_URL . '/assets/dist/js/adminlte.min.js' ?>"></script>
+
+    <script src="<?php echo BASE_URL . '/assets/plugins/datatables/jquery.dataTables.min.js' ?>"></script>
+    <script src="<?php echo BASE_URL . '/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' ?>"></script>
+    <script src="<?php echo BASE_URL . '/assets/plugins/datatables-responsive/js/dataTables.responsive.min.js' ?>"></script>
+    <script src="<?php echo BASE_URL . '/assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js' ?>"></script>
+    <script src="<?php echo BASE_URL . '/assets/plugins/datatables-buttons/js/dataTables.buttons.min.js' ?>"></script>
+    <script src="<?php echo BASE_URL . '/assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js' ?>"></script>
+    <script src="<?php echo BASE_URL . '/assets/plugins/datatables-buttons/js/buttons.html5.min.js' ?>"></script>
+    <script src="<?php echo BASE_URL . '/assets/plugins/datatables-buttons/js/buttons.print.min.js' ?>"></script>
+    <script src="<?php echo BASE_URL . '/assets/plugins/datatables-buttons/js/buttons.colVis.min.js' ?>"></script>
+
+    <script>
+        $(function () {
+    $("#siswa").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": []
+    }).buttons().container().appendTo('#siswa_wrapper .col-md-6:eq(0)');
+   
+  });
+    </script>
 </body>
 
 </html>

@@ -1,7 +1,7 @@
  <!-- Main Sidebar Container -->
  <aside class="main-sidebar sidebar-dark-primary elevation-4">
      <!-- Brand Logo -->
-     <a href="index3.html" class="brand-link">
+     <a href="#" class="brand-link">
          <img src="<?php echo BASE_URL . '/assets/dist/img/logo.png' ?>" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
          <span class="brand-text font-weight-light">PEMBAYARAN SPP</span>
      </a>
@@ -21,10 +21,18 @@
 
                  <?php if (isset($_SESSION['siswa'])) { ?>
                      <li class="nav-item">
+                         <a href="<?php echo BASE_URL . '/siswa/profile.php' ?>" class="nav-link">
+                             <i class='nav-icon fas fa-user'></i>
+                             <p>
+                                 Profile
+                             </p>
+                         </a>
+                     </li>
+                     <li class="nav-item">
                          <a href="<?php echo BASE_URL . '/siswa' ?>" class="nav-link">
                              <i class='nav-icon fas fa-file-invoice'></i>
                              <p>
-                                 Riwayat Transaksi
+                                 History Pembayaran
                              </p>
                          </a>
                      </li>
@@ -104,7 +112,7 @@
                          <a href="<?php echo BASE_URL . '/riwayat_transaksi' ?>" class="nav-link">
                              <i class='nav-icon fas fa-file-invoice'></i>
                              <p>
-                                 Riwayat Transaksi
+                                 History Pembayaran
                              </p>
                          </a>
                      </li>

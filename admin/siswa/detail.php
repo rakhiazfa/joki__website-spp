@@ -1,0 +1,140 @@
+<?php
+
+require_once __DIR__ . '/../../config/konfigurasi.php';
+require_once __DIR__ . '/../../database/koneksi.php';
+
+if (!isset($_SESSION['user'])) {
+    header('Location:' . BASE_URL . '/login.php');
+    die();
+}
+
+if ($_SESSION['user']['level'] !== 'admin') {
+    header('Location:' . BASE_URL . '/petugas');
+    die();
+}
+
+if (!isset($_GET['nisn']) || $_GET['nisn'] == '') {
+    header('Location:' . BASE_URL . '/admin/siswa');
+    die();
+}
+
+$nisn = $_GET['nisn'];
+
+$query = mysqli_query($koneksi, "SELECT siswa.*, kelas.* FROM siswa JOIN kelas ON siswa.id_kelas = kelas.id_kelas WHERE nisn = '$nisn' LIMIT 1");
+
+$siswa = $query->fetch_assoc();
+
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Detail siswa | Pembayaran SPP</title>
+    <link rel="shortcut icon" href="assets/dist/img/rrr.png">
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="<?php echo BASE_URL . '/assets/plugins/fontawesome-free/css/all.min.css' ?>">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="<?php echo BASE_URL . '/assets/dist/css/adminlte.min.css' ?>">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="<?php echo BASE_URL . '/assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css' ?>">
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+
+        <!-- Preloader -->
+        <!-- <div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__shake" src="<?php echo BASE_URL . '/assets/dist/img/logo.png' ?>" alt="LOGO" height="60" width="60">
+        </div> -->
+
+        <?php include __DIR__ . '/../../templates/topbar.php' ?>
+
+        <?php include __DIR__ . '/../../templates/sidebar.php' ?>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+
+            <section>
+
+                <div class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1 class="m-0">Detail siswa</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <section class="content">
+
+                <div class="container-fluid">
+
+                    <div class="row">
+
+                        <div class="col-12">
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Detail siswa</h3>
+                                </div>
+                                <div class="card-body">
+                                        
+                                <p>NISN : <b><?= $siswa["nisn"] ?></b> </p>
+                                <p>NIS : <b><?= $siswa["nis"] ?></b> </p>
+                                <p>Nama : <b><?= $siswa["nama"] ?></b> </p>
+                                <p>Kelas : <b><?php echo ($siswa['nama_kelas'] ?? '') . ' ' . ($siswa['kompetensi_keahlian'] ?? '') ?></b></p>
+                                <p>Alamat : <b><?= $siswa["alamat"] ?></b> </p>
+                                <p>No Telepon : <b><?= $siswa["no_telp"] ?></b> </p>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <strong>Copyright &copy; <?php echo date('Y') ?> <a href="#">Ragil Anugraha</a>.</strong>
+            All rights reserved.
+        </footer>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- jQuery -->
+    <script src="<?php echo BASE_URL . '/assets/plugins/jquery/jquery.min.js' ?>"></script>
+    <!-- Bootstrap 4 -->
+    <script src="<?php echo BASE_URL . '/assets/plugins/bootstrap/js/bootstrap.bundle.min.js' ?>"></script>
+    <!-- Moment JS -->
+    <script src="<?php echo BASE_URL . '/assets/plugins/moment/moment.min.js' ?>"></script>
+    <!-- overlayScrollbars -->
+    <script src="<?php echo BASE_URL . '/assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js' ?>"></script>
+    <!-- AdminLTE App -->
+    <script src="<?php echo BASE_URL . '/assets/dist/js/adminlte.min.js' ?>"></script>
+</body>
+
+</html>
